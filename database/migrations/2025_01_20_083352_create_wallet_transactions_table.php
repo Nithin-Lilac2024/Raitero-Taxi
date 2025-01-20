@@ -10,15 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('wallet_transactions', function (Blueprint $table) {
             $table->id();
-            $table->text('terms');
-            $table->text('conditions');
-            $table->text('privacy_policy');
-            $table->text('about_app');
-            $table->text('ride_terms_and_conditions');
-            $table->text('cancellation_policy');
-            $table->text('referral_policy');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('trip_id')->nullable();
+            $table->decimal('amount_in');
+            $table->decimal('amount_out');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('wallet_transactions');
     }
 };

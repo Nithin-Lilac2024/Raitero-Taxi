@@ -20,10 +20,12 @@ return new class extends Migration {
             $table->string('otp', 4)->nullable();
             $table->boolean('otp_verified')->default(false);
             $table->timestamp('otp_expires_at')->nullable();
+            $table->string('image_path')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->text('address');
-            $table->string('generated_referral_code')->unique()->nullable();
-            $table->string('user_referral_code')->unique()->nullable();
+            $table->string('own_referral_code')->unique()->nullable();
+            $table->unsignedBigInteger('referral_id')->nullable();
+            $table->string('phone_code');
             $table->string('phone_number');
             $table->boolean('is_online')->default(0);
             $table->decimal('latitude', 10, 7)->nullable();
@@ -36,6 +38,7 @@ return new class extends Migration {
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('referral_id')->references('id')->on('users')->onDelete('cascade');
             // $table->index(['username', 'password', 'first_name', 'last_name', 'email'], 'users_index');
         });
 

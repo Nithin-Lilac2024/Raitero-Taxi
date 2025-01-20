@@ -4,15 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('trip_billing', function (Blueprint $table) {
+        Schema::create('floating_cash_logs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('driver_id');
+            $table->enum('cash_type', ['transaction', 'cod_collection']);
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trip_billing');
+        Schema::dropIfExists('floating_cash_logs');
     }
 };

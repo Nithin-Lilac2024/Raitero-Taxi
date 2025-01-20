@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('customer_id');
             $table->decimal('from_latitude', 10, 7)->nullable();
             $table->decimal('from_longitude', 10, 7)->nullable();
+            $table->decimal('drop_off_latitude', 10, 7)->nullable();
+            $table->decimal('drop_off_longitude', 10, 7)->nullable();
             $table->decimal('to_latitude', 10, 7)->nullable();
             $table->decimal('to_longitude', 10, 7)->nullable();
             $table->enum('trip_type', ['on_demand', 'scheduled']);

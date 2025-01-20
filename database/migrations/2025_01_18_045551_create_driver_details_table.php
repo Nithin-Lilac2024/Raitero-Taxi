@@ -13,12 +13,13 @@ return new class extends Migration {
         Schema::create('driver_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('total_trips');
-            $table->integer('total_earnings');
-            $table->integer('total_completed');
-            $table->integer('total_cancelled');
-            $table->integer('total_ratings');
-            $table->string('driver_image_path')->nullable();
+            $table->decimal('floating_coins');
+            $table->boolean('is_online')->default(0);
+            $table->integer('total_trips')->default(0);
+            $table->integer('total_earnings')->default(0);
+            $table->integer('total_completed')->default(0);
+            $table->integer('total_cancelled')->default(0);
+            $table->integer('total_ratings')->default(0);
             $table->string('license_number');
             $table->date('license_issue_date');
             $table->string('license_picture_front')->nullable();

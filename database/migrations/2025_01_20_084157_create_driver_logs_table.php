@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('insurance_companies', function (Blueprint $table) {
+        Schema::create('driver_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('company_address');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('daily_start_time');
+            $table->timestamp('daily_end_time')->nullable();
+            $table->unsignedBigInteger('trip_id')->nullable();
+            
+
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('insurance_companies');
+        Schema::dropIfExists('driver_logs');
     }
 };

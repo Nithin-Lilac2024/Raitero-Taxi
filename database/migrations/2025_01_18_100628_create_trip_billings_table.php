@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('driver_id');
+            $table->string('transaction_id')->unique();
             $table->enum('payment_method', ['cash', 'online_payment']);
             $table->decimal('fare', 10, 2);
             $table->decimal('tax', 10, 2);
@@ -21,6 +22,7 @@ return new class extends Migration {
             $table->decimal('surge', 10, 2);
             $table->decimal('tip', 10, 2);
             $table->decimal('total_amount', 10, 2);
+            $table->timestamp('payment_date');
             $table->timestamps();
         });
     }

@@ -13,10 +13,12 @@ return new class extends Migration {
         Schema::create('trip_cancellations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('driver_id');
             $table->unsignedBigInteger('trip_id');
             $table->text('issue_content');
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('driver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
             // $table->index(['user_id', 'trip_id', 'issue_content']);
